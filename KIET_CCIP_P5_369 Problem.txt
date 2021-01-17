@@ -1,0 +1,71 @@
+KIET_CCIP_P5_369 Problem
+Problem
+Submissions
+Leaderboard
+A number is said to be a 369 number if
+
+The count of 3s is equal to count of 6s and the count of 6s is equal to count of 9s. The count of 3s is at least 1. For Example 12369, 383676989, 396 all are 369 numbers whereas 213, 342143, 111 are not.
+
+Given A and B find how many 369 numbers are there in the interval [A, B]
+
+Input Format
+
+line containing 2 integers A and B
+
+Constraints
+
+1<=A<=B<=10^5
+
+Output Format
+
+the number of 369 numbers between A and B inclusive
+
+Sample Input 0
+
+360 400
+Sample Output 0
+
+2
+Explanation 0
+
+only 369 and 396 follow the rule from 360 to 400. So, count would be 2
+
+
+
+import java.util.*;
+public class Q369
+{
+    public static int count(int n, int x)
+    {
+        int a, c = 0;
+        while(n > 0)
+        {
+            a = n%10;
+            if(a == x)
+                c++;
+            n = n/10;
+        }
+        return c;
+    }
+    public static void main(String args[])
+    {
+        int a, b, three, six, nine, count = 0;
+        Scanner br = new Scanner(System.in);
+        a = br.nextInt();
+        b = br.nextInt();
+        for(int i = a; i <= b; i++)
+        {
+            three = count(i,3);
+            six = count(i,6);
+            nine = count(i,9);
+            if(three>0)
+            {
+                if(three == six && six == nine)
+                {
+                    count++;
+                }
+            }
+        }
+        System.out.println(count);
+    }
+}

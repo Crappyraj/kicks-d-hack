@@ -1,0 +1,84 @@
+KIET_CCIP_P13_KIET competition
+
+
+KIET organizing an event, in which 5 competition involved. Any particular student can participate any of the competetion, but the student can't participate two or more times in a paticular competetion.
+
+Winning Reward
+
+1st Competetion = 1 Point with T-shirt
+
+2nd Competetion = 2 Point with T-shirt
+
+3rd Competetion = 4 Point with T-shirt
+
+4th Competetion = 8 Point with T-shirt
+
+5th Competetion = 16 Point with T-shirt
+
+Suppose 'N' number of students paticipate in this event.
+
+every student got points P(0<=p<32).
+
+So, you have to calculate number of T-shirt required for prize.
+
+Input Format
+
+first line contains number of student participated 'N'.
+
+Next 'N' line contains points scored by 'N' students.
+
+Constraints
+
+0 <= points <= 32
+
+Output Format
+
+Single line integer output
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    int *a = new int[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin>>a[i];
+    }
+    int shirt = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int p = a[i];
+        if(p >= 16)
+        {
+            shirt++;
+            p-=16;
+        }
+        if(p >= 8)
+        {
+            shirt++;
+            p-=8;
+        }
+        if(p >= 4)
+        {
+            shirt++;
+            p-=4;
+        }
+        if(p >= 2)
+        {
+            shirt++;
+            p-=2;
+        }
+        if(p >= 1)
+        {
+            shirt++;
+            p-=1;
+        }
+    }
+    cout<<shirt;
+    return 0;
+}

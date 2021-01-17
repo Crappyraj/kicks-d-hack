@@ -1,0 +1,101 @@
+KIET_CCIP_P24_Element Distancing
+
+
+You have an array Arr[] of N elements, and two numbers A and B. You have to find the minimum number of elements of aarry between A and B.
+
+If Either A or B doesn't exists in array, then print -1.
+
+Input Format
+
+First line consists size of array N
+
+Second line consists N separated input for array elements
+
+Third line consists two number A and B
+
+Constraints
+
+1<=N<=1000
+
+Output Format
+
+Output consists an integer
+
+Sample Input 0
+
+9
+10 3 2 4 5 6 9 7 3
+3 6
+Sample Output 0
+
+2
+Explanation 0
+
+The count of minimum number of elements of array between 3 and 6 is 2(i. e. 9 and 7)
+
+Sample Input 1
+
+9
+10 3 2 4 5 6 9 7 3
+1 6
+Sample Output 1
+
+-1
+Explanation 1
+
+1 doesn't exists in array.
+
+
+
+
+import java.util.*;
+public class elementdistancing
+{
+    public static int index(int x[], int num)
+    {
+        int n = x.length;
+        for(int i = 0; i < n; i++)
+        {
+            if(x[i] == num)
+                return i;
+        }
+        return -1;
+    }
+    public static void main(String args[])
+    {
+        int n, a, b, start, end, min, low;
+        Scanner br = new Scanner(System.in);
+        n = br.nextInt();
+        int x[] = new int[n];
+        for(int i = 0; i < n; i++)
+            x[i] = br.nextInt();
+        a = br.nextInt();
+        b = br.nextInt();
+        start = index(x,a);
+        end = index(x,b);
+        if(start == -1 || end == -1)
+            System.out.println(-1);
+        else
+        {
+            min = Math.abs(start - end);
+            for(int i = 0; i < n; i++)
+            {
+                if(x[i] == a)
+                {
+                    start = i;
+                    for(int j = 0; j < n; j++)
+                    {
+                        if(x[j] == b)
+                        {
+                            end = j;
+                            low = Math.abs(start - end);
+                            if(low < min)
+                                min = low;
+                        }
+                    }
+                }
+            }
+            System.out.println(min - 1);
+        }
+    }
+}

@@ -1,0 +1,68 @@
+KIET_CCIP_P21_Close to palindrome
+
+Find the closest palindrome number to the input number.
+
+If input number is palindrome then print that number in output.
+
+If two palindrome numbers tie in absolute distance, print the smaller number in output.
+
+Input Format
+
+Input consists an integer N.
+
+Constraints
+
+0<=N<=10000 0<=Palindrome Number<=9999
+
+Output Format
+
+Output consists a palindrome number which is closest to N.
+
+Sample Input 0
+
+121
+Sample Output 0
+
+121
+Sample Input 1
+
+100
+Sample Output 1
+
+99
+
+
+
+import java.util.*;
+public class ClosestPalindrome
+{
+    public static boolean isPalindrome(int n)
+    {
+        int num = n, rem, rev = 0;
+        boolean b = false;
+        while(num > 0)
+        {
+            rem = num % 10;
+            rev = rev * 10 + rem;
+            num = num /10;
+        }
+        if(rev == n)
+            b = true;
+        return b;
+    }
+    public static void main(String args[])
+    {
+        int n, num, count = 0; boolean ans;
+        Scanner br = new Scanner(System.in);
+        n = br.nextInt();
+        while(!isPalindrome(n))
+        {
+            count++;
+            if(isPalindrome(n - count))
+                n = n - count;
+            if(isPalindrome(n + count))
+                n = n + count;
+        }
+        System.out.println(n);
+    }
+}
